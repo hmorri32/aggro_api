@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'api/v1/base#welcome'
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      get '/spots', to: "spots#index"
+    end
+  end
 end
