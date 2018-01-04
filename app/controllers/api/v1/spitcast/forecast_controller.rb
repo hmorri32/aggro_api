@@ -24,6 +24,6 @@ class Api::V1::Spitcast::ForecastController < Api::V1::BaseController
     end
 
     def create_service
-      @service = @spot ? SpitCastService.new(@spot.spitcast_id) : (render json: {error: "route not found"})
+      @service = @spot ? SpitCastService.new(@spot.spitcast_id) : (json_response({error: "route not found"}, :not_found))
     end
 end
