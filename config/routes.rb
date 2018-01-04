@@ -9,6 +9,10 @@ Rails.application.routes.draw do
         get '/daily/:spitcast_id',  to: 'forecast#daily_forecast'
         get '/weekly/:spitcast_id', to: 'forecast#weekly_forecast'
       end
+
+      namespace :msw do
+        get '/weekly/:msw_id', to: 'forecast#weekly_forecast'
+      end
       get '/spots', to: "spots#index"
     end
   end
