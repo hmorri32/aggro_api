@@ -15,9 +15,10 @@ Rails.application.routes.draw do
       end
 
       namespace :surfline do
-        get '/weekly/:surfline_id',       to: 'forecast#weekly_forecast'
-        get '/daily/:surfline_id',        to: 'forecast#daily_forecast'
-        get '/daily/:surfline_id/parsed', to: 'forecast#parsed'
+        get '/weekly/:surfline_id',        to: 'forecast#weekly_forecast'
+        get '/weekly/:surfline_id/parsed', to: 'forecast#weekly_parsed'
+        get '/daily/:surfline_id',         to: 'forecast#daily_forecast'
+        get '/daily/:surfline_id/parsed',  to: 'forecast#daily_parsed'
       end
 
       get '/spots', to: "spots#index"
