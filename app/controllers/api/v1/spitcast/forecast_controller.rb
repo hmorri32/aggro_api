@@ -10,17 +10,20 @@ class Api::V1::Spitcast::ForecastController < Api::V1::BaseController
     json_response(@service.weekly_forecast)
   end
 
-  def daily_tides
-    json_response(@service.daily_tides)
+  def daily_sd_tides
+    json_response(SpitCastService.daily_san_diego_tides)
+  end
+
+  def weekly_sd_tides
+    json_response(SpitCastService.weekly_san_diego_tides)
   end
 
   private
+    def set_spot
+      @spot = Spot.find_by(spitcast_id: params[:spitcast_id])
+    end
 
-  def set_spot
-    @spot = Spot.find_by(spitcast_id: params[:spitcast_id])
-  end
-
-  def create_service
-    @service = @spot ? SpitCastService.new(@spot.spitcast_id) : SpitCastService.new
-  end
+    def create_service
+      @service ||= SpitCastService.new(@spot.spitcast_id)
+    end
 end
