@@ -13,6 +13,13 @@ Rails.application.routes.draw do
       namespace :msw do
         get '/weekly/:msw_id', to: 'forecast#weekly_forecast'
       end
+
+      namespace :surfline do
+        get '/weekly/:surfline_id',       to: 'forecast#weekly_forecast'
+        get '/daily/:surfline_id',        to: 'forecast#daily_forecast'
+        get '/daily/:surfline_id/parsed', to: 'forecast#parsed'
+      end
+
       get '/spots', to: "spots#index"
     end
   end

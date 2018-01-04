@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MswService do
   let!(:msw_service) { MswService.new }
+
   describe "initialize" do
     it 'returns an instance' do
       expect(msw_service).to be_a MswService
