@@ -9,11 +9,11 @@ class SpitCastService
   end
 
   def weekly_forecast
-    get_json("spot/forecast/#{spitcast_id}/?dcat=week")
+    parse_response(get_json("spot/forecast/#{spitcast_id}/?dcat=week"))
   end
 
   def daily_forecast
-    get_json("spot/forecast/#{spitcast_id}/")
+    parse_response(get_json("spot/forecast/#{spitcast_id}/"))
   end
 
   def self.daily_san_diego_tides
@@ -26,6 +26,21 @@ class SpitCastService
 
   private
     attr_reader :client, :spitcast_id
+
+    def parse_response(json)
+      json.map { |forecast| forecast[:shape_full] = delegate_shape_score(forecast); forecast }
+    end
+
+    def delegate_shape_score(forecast)
+      case forecast[:shape_full]
+        when 'Poor'      then 1
+        when 'Poor-Fair' then 2
+        when 'Fair'      then 3
+        when 'Fair-Good' then 4
+        when 'Good'      then 5
+        else 0
+      end
+    end
 
     def get_json(url)
       JSON.parse(client.get(url).body, symbolize_names: true)
