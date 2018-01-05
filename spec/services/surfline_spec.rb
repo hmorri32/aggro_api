@@ -14,7 +14,6 @@ RSpec.describe SurflineService do
     describe "weekly_forecast" do
       it "returns a yung weekly forecast" do
         forecast = surfline_service.weekly_forecast
-        # require 'pry'; binding.pry
         expect(forecast.class).to eq Hash
       end
     end
