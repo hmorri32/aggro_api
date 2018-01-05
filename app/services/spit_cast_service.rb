@@ -28,7 +28,12 @@ class SpitCastService
     attr_reader :client, :spitcast_id
 
     def parse_response(json)
-      json.map { |forecast| forecast[:shape_full] = delegate_shape_score(forecast); forecast }
+      json.map do |forecast|
+        forecast[:shape_full] = delegate_shape_score(forecast);
+        time = Time.parse(forecast[:gmt])
+        forecast[:gmt] = time.to_formatted_s(:db)
+        forecast
+      end
     end
 
     def delegate_shape_score(forecast)
