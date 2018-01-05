@@ -21,6 +21,10 @@ Rails.application.routes.draw do
         get '/daily/:surfline_id/parsed',  to: 'forecast#daily_parsed'
       end
 
+      namespace :amalgamate do
+        get 'weekly_forecast/:name', to: "forecast#weekly_forecast"
+      end
+
       get '/spots', to: "spots#index"
     end
   end
