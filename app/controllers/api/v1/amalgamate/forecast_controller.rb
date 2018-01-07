@@ -4,7 +4,7 @@ class Api::V1::Amalgamate::ForecastController < Api::V1::BaseController
       @spot = Spot.where("name ILIKE ?", "%#{params[:name]}%")
       if @spot.length > 0
         @service = AmalgamatedService.new(@spot.first)
-        json_response @service.spitcast_weekly
+        json_response @service.parse_spitcast_weekly
       else
         not_found
       end

@@ -1,5 +1,6 @@
 class AmalgamatedService
-  attr_reader :msw_servce, :spitcast_service, :surfline_service
+  attr_reader :msw_service, :spitcast_service, :surfline_service
+
   def initialize(spot)
     @msw_service      = MswService.new(spot.msw_id)
     @spitcast_service = SpitCastService.new(spot.spitcast_id)
@@ -7,14 +8,21 @@ class AmalgamatedService
   end
 
   def surfline_weekly
-    surfline_service.parsed_response(7)
+    # surfline_service.parsed_response(7)
+    surfline_service.weekly_forecast
   end
 
   def spitcast_weekly
     spitcast_service.weekly_forecast
   end
 
+  def msw_weekly
+    msw_service.five_day_forecast
+  end
+
   def parse_spitcast_weekly
+    # surfline_weekly <<(spitcast_weekly)
+    spitcast_weekly << surfline_weekly
   end
 
   def time_zone
