@@ -17,14 +17,16 @@ class MswService
 
     def parse_response(json)
       json.map do |forecast|
-        forecast[:timestamp] = format_timestamps(forecast)
+        forecast[:timestamp]      = Time.at(forecast[:timestamp]).utc.iso8601
+        forecast[:localTimestamp] = Time.at(forecast[:localTimestamp]).utc.iso8601
         forecast
       end
     end
 
-    def format_timestamps(forecast)
-      Time.zone.at(forecast[:timestamp])
+    def format_timestamps(timestamp)
+      Time.zone.at(timestamp)
     end
+
 
     def get_json(url)
       JSON.parse(client.get(url).body, symbolize_names: true)
