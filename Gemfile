@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'faraday'
 gem 'faker'
 gem 'database_cleaner'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   gem 'pry'
