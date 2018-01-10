@@ -3,7 +3,6 @@ class ApplicationController < ActionController::API
   include Response
   include ExceptionHandler
 
-
   protected
 
   def authenticate_request!
