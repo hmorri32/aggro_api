@@ -14,6 +14,8 @@ gem 'faraday'
 gem 'faker'
 gem 'database_cleaner'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'bcrypt', '~> 3.1', '>= 3.1.11'
+gem 'jwt'
 
 group :development, :test do
   gem 'pry'

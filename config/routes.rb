@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   root to: 'api/v1/base#welcome'
+  resources :users, only: :create do
+    collection do
+      post 'login'
+    end
+  end
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
