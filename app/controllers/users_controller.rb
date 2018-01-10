@@ -10,9 +10,8 @@ class UsersController < ApplicationController
   end
 
   def login
-    user = User.find_by(email: params[:email].to_s.downcase)
-
-    if user && user.authenticate(params[:password])
+    user = User.find_by(email: params[:user][:email].to_s.downcase)
+    if user && user.authenticate(params[:user][:password])
       auth_token = JsonWebToken.encode({user_id: user.id})
       render json: {auth_token: auth_token}, status: :ok
     else
