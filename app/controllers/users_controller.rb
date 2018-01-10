@@ -10,6 +10,10 @@ class UsersController < ApplicationController
   end
 
   def login
+    if !params || !params[:user] || params[:user][:email]
+      render json: {error: 'Invalid username / password'}, status: :unauthorized
+    end
+
     user = User.find_by(email: params[:user][:email].to_s.downcase)
     if user && user.authenticate(params[:user][:password])
       auth_token = JsonWebToken.encode({user_id: user.id})
