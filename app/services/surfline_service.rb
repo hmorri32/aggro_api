@@ -11,11 +11,11 @@ class SurflineService
   end
 
   def weekly_forecast(get_all_spots=false)
-    get_json("forecasts/#{surfline_id}?resources=surf,wind,sort&days=7&getAllSpots=#{get_all_spots}&units=e&interpolate=true&showOptimal=true&usenearshore=true")
+    get_json("forecasts/#{surfline_id}?resources=analysis,surf,wind,sort&days=7&getAllSpots=#{get_all_spots}&units=e&interpolate=true&showOptimal=true&usenearshore=true")
   end
 
   def daily_forecast(get_all_spots=false)
-    get_json("forecasts/#{surfline_id}?resources=surf,wind,sort&days=1&getAllSpots=#{get_all_spots}&units=e&interpolate=true&showOptimal=true&usenearshore=true")
+    get_json("forecasts/#{surfline_id}?resources=analysis,surf,wind,sort&days=1&getAllSpots=#{get_all_spots}&units=e&interpolate=true&showOptimal=true&usenearshore=true")
   end
 
   def get_json(url)
