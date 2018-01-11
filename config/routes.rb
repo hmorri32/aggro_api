@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       end
 
       get '/spots', to: "spots#index"
+      get '/spots_with_forecast', to: "spots#spots_with_forecast"
     end
   end
 end
