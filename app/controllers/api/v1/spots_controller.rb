@@ -8,7 +8,10 @@ class Api::V1::SpotsController < Api::V1::BaseController
   end
 
   def spots_with_forecast
-    render json:  Spot.all, each_serializer: SpotForecastSerializer
+    # json = Rails.cache.fetch("#{cache_key}/forecast",) do
+    #   render_to_string json: event.viewers, each_serializer: ViewerSerializer
+    # end
+    render json: Spot.all, each_serializer: SpotForecastSerializer
     # Spot.all.map {|spot|
     #   render json: spot
     #   # require 'pry'; binding.pry

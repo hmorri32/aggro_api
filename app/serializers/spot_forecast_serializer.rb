@@ -1,6 +1,5 @@
 class SpotForecastSerializer < ActiveModel::Serializer
   attributes :id, :name, :spitcast_id, :forecast
-  cache key: 'forecast', expires_in: 12.hours
 
   def forecast
     if object.spitcast_id
