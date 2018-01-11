@@ -18,6 +18,10 @@ class SurflineService
     get_json("forecasts/#{surfline_id}?resources=analysis,surf,wind,sort&days=1&getAllSpots=#{get_all_spots}&units=e&interpolate=true&showOptimal=true&usenearshore=true")
   end
 
+  def tides
+    get_json("forecasts/#{surfline_id}")[:Tide]
+  end
+
   def get_json(url)
     JSON.parse(client.get(url).body, symbolize_names: true)
   end
