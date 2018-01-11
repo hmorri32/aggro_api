@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       end
 
       namespace :surfline do
+        get '/tides/:surfline_id',         to: 'forecast#tides'
         get '/weekly/:surfline_id',        to: 'forecast#weekly_forecast'
         get '/weekly/:surfline_id/parsed', to: 'forecast#weekly_parsed'
         get '/daily/:surfline_id',         to: 'forecast#daily_forecast'
