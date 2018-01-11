@@ -1,6 +1,6 @@
 class Api::V1::Surfline::ForecastController < Api::V1::BaseController
-  before_action :set_spot,       only: [:weekly_forecast, :daily_forecast, :daily_parsed, :weekly_parsed]
-  before_action :create_service, only: [:weekly_forecast, :daily_forecast, :daily_parsed, :weekly_parsed]
+  before_action :set_spot,       only: [:weekly_forecast, :daily_forecast, :daily_parsed, :weekly_parsed, :tides]
+  before_action :create_service, only: [:weekly_forecast, :daily_forecast, :daily_parsed, :weekly_parsed, :tides]
 
   def weekly_forecast
     json_response @service.weekly_forecast
@@ -16,6 +16,10 @@ class Api::V1::Surfline::ForecastController < Api::V1::BaseController
 
   def weekly_parsed
     json_response @service.parsed_response(7)
+  end
+
+  def tides
+    json_response @service.tides
   end
 
   private
