@@ -1,4 +1,4 @@
-Ultra custom surf forecasting API built in Ruby on Rails.
+Ultra custom surf forecasting API built in Ruby on Rails. Authentication using JWT.
 
 ROUTES
 - **GET /**
